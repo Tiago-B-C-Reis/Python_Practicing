@@ -95,4 +95,14 @@ def large_shirt(size=24):
                       f'- And with the following message: "{shirt_printing}"\n')
 
 
-large_shirt()
+# large_shirt()
+
+
+# 8.5
+def describe_city(city_input, country_input="Portugal"):
+
+    print(f'{city_input} is in {country_input}')
+
+
+describe_city("Porto")
+
