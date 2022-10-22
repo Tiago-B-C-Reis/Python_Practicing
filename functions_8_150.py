@@ -4,9 +4,9 @@ def sandwiches(*items):
     return message
 
 
-sandwiche = sandwiches("Chicken", "Egg", "Seafood", "Roast Beef",
-                       "Grilled", "Ham", "Nutella")
-# print(sandwiche)
+sandwich = sandwiches("Chicken", "Egg", "Seafood", "Roast Beef",
+                      "Grilled", "Ham", "Nutella")
+# print(sandwich)
 
 
 # 8.13

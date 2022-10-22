@@ -13,14 +13,14 @@ class Restaurant:
         print("The restaurant is open")
 
 
-my_restaurant = Restaurant("Tasco", "Portuguese")
+# my_restaurant = Restaurant("Tasco", "Portuguese")
 # my_restaurant.describe_restaurant()
 # my_restaurant.open_restaurant()
 
-your_restaurant = Restaurant("Mademoiselle", "French")
+# your_restaurant = Restaurant("Mademoiselle", "French")
 # your_restaurant.describe_restaurant()
 
-his_restaurant = Restaurant("Cais 35 Sushi", "Japanese")
+# his_restaurant = Restaurant("Cais 35 Sushi", "Japanese")
 # his_restaurant.describe_restaurant()
 
 
@@ -50,6 +50,6 @@ class User:
         print(f'Thank for sign in {self.fist_name, self.last_name}!')
 
 
-users = User("Jon", "Snow", "30", "Jon.snow@gmail.com", "The real north", "none", "Complicated")
-users.describe_user()
-users.greet_user()
+# users = User("Jon", "Snow", "30", "Jon.snow@gmail.com", "The real north", "none", "Complicated")
+# users.describe_user()
+# users.greet_user()
