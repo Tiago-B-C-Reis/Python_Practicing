@@ -16,9 +16,9 @@ class IceCreamStand(Restaurant):
         print(f'These are the flavors you choose {flavors}')
 
 
-my_icecream = IceCreamStand("Olá", "Ice_cream", "strawberry", "mango")
-my_icecream.describe_restaurant()
-my_icecream.display_flavors()
+# my_icecream = IceCreamStand("Olá", "Ice_cream", "strawberry", "mango")
+# my_icecream.describe_restaurant()
+# my_icecream.display_flavors()
 
 
 # 9.7 / 9.8
@@ -27,7 +27,8 @@ from Classes_9_162 import User
 
 class Admin(User):
     """
-
+    Simples class that inherits the user class methods and has one method itself
+    to welcome the admin.
     """
     def __init__(self, first_name, last_name, age, e_mail, country, city, marital_status):
         super().__init__(first_name, last_name, age, e_mail, country, city, marital_status)
@@ -39,6 +40,9 @@ class Admin(User):
 
 
 class Privileges:
+    """
+    This class as a method to show the admin privileges.
+    """
     def __init__(self):
         self.privileges = "can add post", "can delete post", "can ban user"
 
@@ -47,9 +51,9 @@ class Privileges:
         print(privileges)
 
 
-admin = Admin("Jon", "Snow", "30", "Jon.snow@gmail.com", "The real north", "none", "Complicated")
-admin.congrat_admin()
-admin.privileges.show_privileges()
+# admin = Admin("Jon", "Snow", "30", "Jon.snow@gmail.com", "The real north", "none", "Complicated")
+# admin.congrat_admin()
+# admin.privileges.show_privileges()
 
 
 # 9.9
@@ -121,9 +125,9 @@ class ElectricCar(Car):
         # method from Car, which gives an ElectricCar instance all the attributes
 
 
-my_tesla = ElectricCar('tesla', 'model s', 2019)
-print(my_tesla.get_descriptive_name())
-my_tesla.battery.describe_battery()
-my_tesla.battery.get_range()
-my_tesla.battery.upgrade_battery()
-my_tesla.battery.get_range()
+# my_tesla = ElectricCar('tesla', 'model s', 2019)
+# print(my_tesla.get_descriptive_name())
+# my_tesla.battery.describe_battery()
+# my_tesla.battery.get_range()
+# my_tesla.battery.upgrade_battery()
+# my_tesla.battery.get_range()
