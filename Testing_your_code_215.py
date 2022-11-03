@@ -30,10 +30,13 @@ class NamesTestCase(unittest.TestCase):
         unittest.main()
 
 
-# 11_2 ---------------------------------------------------------------------------------
-def get_formatted_capital(city, country):
-    """THis function returns the country and city name all formatted"""
-    full_address = f'{country.title()} as a city called {city.title()}.'
+# 11_1/2 ---------------------------------------------------------------------------------
+def get_formatted_capital(city, country, population=''):
+    """This function returns the country and city name all formatted"""
+    if population:
+        full_address = f'{country.title()} as a city called {city.title()} - population {population}.'
+    else:
+        full_address = f'{country.title()} as a city called {city.title()}.'
     return full_address
 
 
@@ -41,9 +44,14 @@ class TestGetFormattedCapital(unittest.TestCase):
     """Test for function 'get_formatted_capital' """
 
     def test_city_country(self):
-        """ """
+        """Do cities like Santiago and countries like Chile works?"""
         formatted_capital = get_formatted_capital("Santiago", "Chile")
         self.assertEqual(formatted_capital, "Chile as a city called Santiago.")
+
+    def test_city_county_population(self):
+        """Do cities like Santiago, countries like Chile works and population like 5000000 works? """
+        formatted_capital = get_formatted_capital("Santiago", "Chile", "5000000")
+        self.assertEqual(formatted_capital, "Chile as a city called Santiago - population 5000000.")
 
     if __name__ == '__main__':
         unittest.main()
