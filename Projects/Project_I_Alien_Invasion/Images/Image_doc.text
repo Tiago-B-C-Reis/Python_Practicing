@@ -1,0 +1,20 @@
+When you’re choosing artwork for your games, be sure to pay attention to
+licensing. The safest and cheapest way to start is to use freely licensed
+graph­ics that you can use and modify,
+from a website like https://pixabay.com/.
+
+You can use almost any type of image file in your game, but it’s easiest
+when you use a bitmap (.bmp) file because Pygame loads bitmaps by default.
+
+Although you can configure Pygame to use other file types, some file types
+depend on certain image libraries that must be installed on your computer.
+Most images you’ll find are in .jpg or .png formats, but you can convert them
+to bitmaps using tools like Photoshop, GIMP, and Paint.
+
+Pay particular attention to the background color in your chosen image.
+
+Try to find a file with a transparent or solid background that you can replace
+with any background color using an image editor.
+Your games will look best if the image’s background color matches your game’s
+background color. Alternatively, you can match your game’s background to the
+image’s background.
