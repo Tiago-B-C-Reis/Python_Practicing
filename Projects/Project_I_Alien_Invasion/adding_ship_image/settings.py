@@ -4,8 +4,8 @@ class Settings:
     def __init__(self):
         """Initialize the game's settings."""
         # Screen settings
-        self.screen_width = 1200
-        self.screen_height = 800
+        self.screen_width = 1920
+        self.screen_height = 1080
 
         # RGB colors: a mix of red, green, and blue (255, 255, 255):
         self.bg_color = (20, 20, 180)
@@ -24,5 +24,6 @@ class Settings:
         self.bullet_width = 5
         self.bullet_height = 15
         self.bullet_color = (250, 0, 0)
+
 
 

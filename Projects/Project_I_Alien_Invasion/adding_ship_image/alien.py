@@ -1,5 +1,6 @@
 import pygame
 from pygame.sprite import Sprite
+import random
 
 
 class Alien(Sprite):
@@ -9,13 +10,22 @@ class Alien(Sprite):
         """Initialize the alien and set its starting position."""
         super().__init__()
         self.screen = ai_game.screen
+        self.alien_probability = (1, 2, 3, 4)
+        self.alien_class = random.choices(self.alien_probability, weights=(60, 35, 4, 1), k=1)
+
         # Load the aliens images and get its rect.
-        self.alien_1 = pygame.image.load('../Images/alien_easy.bmp')
-        self.rect = self.alien_1.get_rect()
-        self.alien_2 = pygame.image.load('../Images/alien_medium.bmp')
-        self.rect = self.alien_2.get_rect()
-        self.alien_3 = pygame.image.load('../Images/alien_hard.bmp')
-        self.rect = self.alien_3.get_rect()
+        if self.alien_class == [1]:
+            self.image = pygame.image.load('../Images/alien_easy.bmp')
+            self.rect = self.image.get_rect()
+        elif self.alien_class == [2]:
+            self.image = pygame.image.load('../Images/alien_medium.bmp')
+            self.rect = self.image.get_rect()
+        elif self.alien_class == [3]:
+            self.image = pygame.image.load('../Images/alien_hard.bmp')
+            self.rect = self.image.get_rect()
+        elif self.alien_class == [4]:
+            self.image = pygame.image.load('../Images/alien_emperor.bmp')
+            self.rect = self.image.get_rect()
 
         # Start each new alien near the top left of the screen.
         self.rect.x = self.rect.width
