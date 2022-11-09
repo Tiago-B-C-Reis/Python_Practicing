@@ -12,6 +12,7 @@ class Alien(Sprite):
         self.screen = ai_game.screen
         self.alien_probability = (1, 2, 3, 4)
         self.alien_class = random.choices(self.alien_probability, weights=(60, 35, 4, 1), k=1)
+        self.settings = ai_game.settings
 
         # Load the aliens images and get its rect.
         if self.alien_class == [1]:
@@ -33,3 +34,17 @@ class Alien(Sprite):
 
         # Store the alien's exact horizontal position.
         self.x = float(self.rect.x)
+
+    def check_edges(self):
+        """Return True if alien is at screen edge"""
+        screen_rect = self.screen.get_rect()
+        if self.rect.right >= screen_rect.right or self.rect.left <= 0:
+            return True
+
+    def update(self):
+        """Move the alien to the right"""
+        self.x += (self.settings.alien_speed *
+                   self.settings.fleet_direction)
+        self.rect.x = self.x
+
+
