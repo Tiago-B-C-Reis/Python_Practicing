@@ -11,18 +11,20 @@ class Settings:
         self.bg_color = (20, 20, 180)
 
         # Bullets limit:
-        self.bullets_allowed = 3
+        self.bullets_allowed = 5
 
         # This setting allow to choose from different backgrounds
         self.bg_choice = 2
 
         # Ship speed setting:
         self.ship_speed = 2.5
+        # Limit of ships that can be used before losing:
+        self.ship_limit = 3
 
         # Bullets settings:
         self.bullet_speed = 1.0
         self.bullet_width = 5
-        self.bullet_height = 15
+        self.bullet_height = 20
         self.bullet_color = (250, 0, 0)
 
         # Alien settings:
@@ -30,6 +32,7 @@ class Settings:
         self.fleet_drop_speed = 5
         # fleet_direction of 1 represents right; -1 represents left:
         self.fleet_direction = 1
+
 
 
 

@@ -10,8 +10,8 @@ class Alien(Sprite):
         """Initialize the alien and set its starting position."""
         super().__init__()
         self.screen = ai_game.screen
-        self.alien_probability = (1, 2, 3, 4)
-        self.alien_class = random.choices(self.alien_probability, weights=(60, 35, 4, 1), k=1)
+        self.alien_level = (1, 2, 3, 4)
+        self.alien_class = random.choices(self.alien_level, weights=(60, 35, 4, 1), k=1)
         self.settings = ai_game.settings
 
         # Load the aliens images and get its rect.

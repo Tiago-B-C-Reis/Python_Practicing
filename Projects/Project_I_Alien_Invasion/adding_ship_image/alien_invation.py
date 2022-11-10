@@ -1,6 +1,8 @@
 import sys
+from time import sleep
 import pygame
 from settings import Settings
+from game_stats import GameStats
 from backgound import Background
 from ship import Ship
 from bullet import Bullet
@@ -16,7 +18,7 @@ class AlienInvasion:
         pygame.init()
         self.settings = Settings()
 
-        fullscreen = True
+        fullscreen = False
         if fullscreen:
             # Set scream size settings:
             self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
@@ -28,6 +30,9 @@ class AlienInvasion:
         # Images used in the game:
         self.background = Background(self)
         self.ship = Ship(self)
+
+        # Create an instance for statistics:
+        self.stats = GameStats(self)
 
         #  This group will be an instance of the pygame.sprite.Group class,
         #  which behaves like a list with some extra functionality that’s
@@ -109,6 +114,45 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
+        self._check_bullet_alien_collisions()
+
+    def _check_bullet_alien_collisions(self):
+        """Respond to bullets and aliens that have collided"""
+        # Check for any bullets that have hit aliens.
+        #   If so, get rid of the bullet and the alien.
+        collisions = pygame.sprite.groupcollide(
+            self.bullets, self.aliens, True, True)
+
+        if not self.aliens:
+            # Destroy existing bullets and create new fleet.
+            self.bullets.empty()
+            self._create_fleet()
+# -----------------------------------------------------------------------------
+
+# Methods to control the end-game ---------------------------------------------
+    def _ship_hit(self):
+        """Respond to the ship being hit by an alien."""
+        if self.stats.ships_left > 0:
+            # Decrement of how many ships are left:
+            self.stats.ships_left -= 1
+            # Get rid of any remaining aliens and bullets:
+            self.bullets.empty()
+            self.aliens.empty()
+            # Create a new fleet and center the ship:
+            self._create_fleet()
+            self.ship.center_ship()
+            # Pause.
+            sleep(0.5)
+        else:
+            self.stats.game_active = False
+
+    def _check_aliens_bottom(self):
+        """Check if any aliens have reached the bottom of the screen."""
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottom:
+                # Treat this the same as if the ship got hip:
+                self._ship_hit()
 # -----------------------------------------------------------------------------
 
 # Methods to manage the aliens: ------------------------------------------------
@@ -133,11 +177,10 @@ class AlienInvasion:
             for alien_number in range(number_aliens_x):
                 self._create_alien(alien_number, row_number)
 
-    def _create_alien(self, alien_number, row_number):
+    def _create_alien(self, alien_number, row_number=0):
         """Create an alien and a place it in the row"""
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
-        alien_width = alien.rect.width
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         alien.rect.x = alien.x
@@ -163,6 +206,11 @@ class AlienInvasion:
         """
         self._check_fleet_edges()
         self.aliens.update()
+        # Look for alien-ship collisions.
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            self._ship_hit()
+        # Look for aliens hitting the bottom of the screen:
+        self._check_aliens_bottom()
 # -----------------------------------------------------------------------------
 
 # Method to the screen during the game: ---------------------------------------
@@ -184,9 +232,12 @@ class AlienInvasion:
         """Start the main loop for the game."""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()
+
+            if self.stats.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+
             self._update_screen()
 
 
